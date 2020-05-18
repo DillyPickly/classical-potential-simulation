@@ -1,0 +1,44 @@
+\documentclass{article}
+\begin{document}
+
+
+\section*{A Simple Python Simulator}
+    In classical physics, the EOM of a system can be determined from the potential in the system.
+    Here, I will investigate a discrete particle simulation
+    The project consists of three main python files.
+    \begin{itemize}
+        \item \textbf{config.py}: holds all the configuration information for the project.
+        \item \textbf{driver.py}: computes the particle dynamics and saves them to a file.
+        \item \textbf{visualize.py}: creates animations to view the simulations.
+    \end{itemize}  
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\subsection*{Physics Relationships}
+
+Looking at Potential Energy, we have:
+
+\begin{equation}
+       \overrightarrow{\mathbf{F}} = -\nabla \mathbf{U} = \langle -\frac{\partial \mathbf{U}}{\partial x}, -\frac{\partial \mathbf{U}}{\partial y} \rangle
+\end{equation}
+
+\begin{equation}
+    \overrightarrow{\mathbf{F}} = m\overrightarrow{\mathbf{a}}
+\end{equation}
+
+\noindent The time derivative of velocity is acceleration so assuming that the potential energy is time independant.
+The change in velocity and position from $t_n \rightarrow t_{n+1}$ is:
+
+\begin{equation}
+    \Delta \overrightarrow{\mathbf{v}} = \overrightarrow{\mathbf{a}} (t_{n+1} - t_{n})
+\end{equation}
+
+\begin{equation}
+    \Delta \overrightarrow{\mathbf{x}} = \overrightarrow{\mathbf{v}} (t_{n+1} - t_{n})
+\end{equation}
+
+
+\end{document}
+
