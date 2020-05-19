@@ -1,3 +1,9 @@
-# Jupyter Notebooks
+# cpython files
 **/__pycache__/**
+
+# Jupyter Notebooks
 **/.ipynb_checkpoints/**
+
+# data and graphs
+data/*.csv
+graphs/*.gif

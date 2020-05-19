@@ -33,11 +33,15 @@ def plotter():
       
 if __name__ == '__main__':
     positions = read_positions()
-    num_steps = int(len(positions)/2)
     print('Finished Reading Data')
 
-    x = positions[::2]
-    y = positions[1::2]
+    x = positions[::2*config.skip]
+    y = positions[1::2*config.skip]
+    
+    if len(x) != len(y):
+        print('Error: x and y are different lengths')
+        
+    num_steps = len(x)
 
     plotter()
-    print('Visualization Saved')
+    print('Visualization Saved | ./{}'.format(config.animation_name))
