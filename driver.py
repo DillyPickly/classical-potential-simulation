@@ -16,11 +16,13 @@ def initialize_particles():
 
 def initialize_masses():
     # uniform distribution
-    return np.random.rand(config.N)*10000+1e19
+    return np.random.rand(config.N)*1e21
 
 def initialize_radii():
     return np.ones((config.N))/60
-    # return np.random.rand(config.N)/10
+
+def initialize_radii_prop_mass():
+    return masses/(30*np.nanmax(masses))
 
 def clear_data():
     filename = config.data_folder + '/' + config.sim_name + '_x.csv'
@@ -49,7 +51,7 @@ def write_radii():
     filename = config.data_folder + '/' + config.sim_name + '_radii.csv'
     with open( filename, 'a', newline='\n') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',')
-        csvwriter.writerow(30*radii)
+        csvwriter.writerow(radii)
 
 
 def collision(i, j):
@@ -68,7 +70,7 @@ def collision(i, j):
     parallel_velocity_j = old_velocities[j,:].dot(parallel_hat)
 
     
-    new_normal = (masses[i]*normal_velocity_i+masses[j]*normal_velocity_j+masses[i]*config.COR*(normal_velocity_j-parallel_velocity_i))/(masses[i]+masses[j])
+    new_normal = (masses[i]*normal_velocity_i+masses[j]*normal_velocity_j+masses[j]*config.COR*(normal_velocity_j-normal_velocity_i))/(masses[i]+masses[j])
 
 
     return parallel_velocity_i*parallel_hat + new_normal*normal_hat
@@ -88,9 +90,29 @@ def delta_velocity(t = 1):
 if __name__ == '__main__':
     clear_data()
 
-    positions = initialize_particles()
-    masses = initialize_masses()
-    radii = initialize_radii()
+    try:
+        masses = config.masses
+    except:
+        masses = initialize_masses()    
+
+
+    try:
+        radii = config.radii
+    except:
+        radii = initialize_radii_prop_mass()
+    
+    try:
+        positions = config.positions
+    except:
+        positions = initialize_particles()
+
+    try:
+        velocities = config.velocities
+    except:
+        pass
+
+
+    
     write_positions()
     write_radii()
 
@@ -106,7 +128,7 @@ if __name__ == '__main__':
                 if i == j:
                     continue
                 x,y = old_positions[i,:] - old_positions[j,:]
-                m = masses[i]
+                m = masses[j]
                 accelerations[i,:] -= derivative(config.potential,x,y,m)
 
         # update velocities
