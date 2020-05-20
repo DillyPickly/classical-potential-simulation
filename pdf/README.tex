@@ -1,4 +1,6 @@
 \documentclass{article}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
 \begin{document}
 
 
@@ -38,6 +40,58 @@ The change in velocity and position from $t_n \rightarrow t_{n+1}$ is:
 \begin{equation}
     \Delta \overrightarrow{\mathbf{x}} = \overrightarrow{\mathbf{v}} (t_{n+1} - t_{n})
 \end{equation}
+
+\subsection*{Inelastic vs. Elastic Collisions}
+
+In both types of collisions, the total momentum before the collision is equal to the total colision after the collision.
+
+Perfectly elastic collisions also conserve kinetic energy. This constraint results makes the objects bounce off one another.
+
+On the other hand, perfectly Inelastic collisions do not conserve kinetic energy. Instead a perfectly Inelastic collisions 
+
+
+Real collisions are somewhere in between perfectly elastic ans perfectly inelastic.
+These collisions can be modelled with a coeffiecient of restitution (COR).
+
+For a collision, we have:
+
+\begin{equation}
+    m_{1}\overrightarrow{v_{1b}} + m_{2}\overrightarrow{v_{2b}} = m_{1}\overrightarrow{v_{1a}} + m_{2}\overrightarrow{v_{2a}}
+\end{equation}
+
+\begin{equation}
+    C_{R} =  -\frac{\overrightarrow{v_{1a}} - \overrightarrow{v_{2a}}}{\overrightarrow{v_{1b}} - \overrightarrow{v_{2b}}}
+\end{equation}
+
+The coeffiecient of restitution then is defined as the amount of relative velocity that the system keeps after the collision.
+In one dimension using the $C_R$ and the conservation of momentum, we obtain:
+\begin{equation}
+    \overrightarrow{v_{1a}} =  \frac{m_1\overrightarrow{v_{1b}} + m_2\overrightarrow{v_{2b}} + m_1C_R(\overrightarrow{v_{2b}} - \overrightarrow{v_{1b}})}{m_1 + m_2}
+\end{equation}
+
+\begin{equation}
+    \overrightarrow{v_{2a}} =  \frac{m_1\overrightarrow{v_{1b}} + m_2\overrightarrow{v_{2b}} + m_2C_R(\overrightarrow{v_{1b}} - \overrightarrow{v_{2b}})}{m_1 + m_2}
+\end{equation}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+Since the above equations are in one dimendion, we need to project the velocities into coordinates normal and parallel to the collision.
+
+Given a velocity $\overrightarrow{v} = v_x \hat{\textit{\i}} + v_y \hat{\textit{\j}}$ with a collision vector, $v_c$, and normal vector, $v_n$.
+
+\begin{equation}
+    \overrightarrow{v_c} = (\overrightarrow{v} \cdot \widehat{v}_c) \widehat{v}_c
+\end{equation}
+
+\begin{equation}
+    \overrightarrow{v_n} = (\overrightarrow{v} \cdot \widehat{v}_n) \widehat{v}_n
+\end{equation}
+
+So we can get the collision components and treat the colision as one dimensional. 
+Once I find the change in velocity from the collision, I can resemble the vector in terms of $\hat{\textit{\i}}$ and $\hat{\textit{\j}}$.
+
 
 
 \end{document}
